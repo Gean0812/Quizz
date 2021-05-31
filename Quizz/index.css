@@ -19,7 +19,7 @@
   body{
       width: 100%;
       height: 100%;
-      background-color: rgb(202, 226, 206);
+      background-color: rgb( 1, 153, 115);
   }
 
   article.home{
@@ -113,7 +113,7 @@
   }
 
   button{
-    background:#1AAB8A;
+    background:rgb(254, 131, 115);
     color:#fff;
     border:none;
     position:relative;
