@@ -1,0 +1,150 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #divBtn{
+    display: flex;
+    justify-content: center;
+  }
+
+  #titulo{
+    font-size: 100px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  body{
+      width: 100%;
+      height: 100%;
+      background-color: rgb( 1, 153, 115);
+  }
+
+  article.home{
+      width: 600px;
+      height: 300px;
+      box-shadow: 1px 1px 5px 1px rgb(27, 27, 27);
+      margin: 0 auto;
+      justify-content: center;
+
+  }
+
+  #divEsquerda {
+    width: 45%;
+    float: left;
+  }
+
+  #divDireita {
+    width: 45%;
+    float: right;
+  }
+
+  iframe{
+    border-radius: 10px;
+  }
+
+  .home{
+    background-color: rgb(254, 131, 115);
+    border-radius: 10px;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 1);
+  }
+
+  #video1, #video2, #video3, #video4{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 1;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: auto;
+  }
+  
+  .modalDialog:target {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+  }
+  
+  .close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+  }
+  
+ .close:hover {
+    background: #00d9ff;
+  }
+
+  button{
+    background:rgb(254, 131, 115);
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{
+    background:#fff;
+    color:#1AAB8A;
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
