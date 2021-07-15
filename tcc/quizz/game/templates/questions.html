@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quizz</title>
+	<link rel = "stylesheet" href = "{% static 'quiz.css' %}">
+<!--	<script src = "{% static 'js/quiz.js' %}"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id = "container">
+		<header>
+			<h1>Quizz</h1>
+		</header>
+		<div class="col-lg-8 border border-success p-4 m-4 mx-auto">
+			{% for q in perguntas %}
+			<h1>{{q.id}}- {{ q.pergunta }}</h1>
+			<form>
+				<div class="radio">
+					<label><input type="radio" id="alternativa1" name="name" value="{{q.alternativa1}}">{{q.alternativa1}}</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="alternativa2" name="name" value="{{q.alternativa2}}">{{q.alternativa2}}</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="alternativa3" name="name" value="{{q.alternativa3}}">{{q.alternativa3}}</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="alternativa4" name="name" value="{{q.alternativa4}}">{{q.alternativa4}}</label>
+				</div>
+			</form>
+			{% endfor %}
+			<div class="form-group">
+				<button class="btn btn-success" id="save_ans">Responder pergunta</button>
+			</div>
+			<div class="paginator">
+				<div class="form-group">
+					{% if perguntas.has_next %}
+						<a href="?page={{ perguntas.next_page_number }}"><button class="btn form-control btn-primary" id="submitAnswer">Próxima</button></a>
+					{% else %}
+						<a href="/responde/"><button class="btn form-control btn-success" id="submitAnswer"> Responder Quizz</button></a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+	window.onload = initall;
+	var saveAnsButton;
+
+	function initall(){
+		saveAnsButton = document.getElementById('save_ans');
+		saveAnsButton.onclick =    saveans
+	}
+
+	function saveans(){
+		var ans = $("input:radio[name=name]:checked").val()
+		alert("Pergunta respondida. Clique em próxima")
+
+		var req = new XMLHttpRequest();
+		var url = '/saveans?ans=' + ans
+
+		req.open("GET", url, true)
+		req.send()
+	}
+</script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
+    <title>Quizz</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="titulo">Quizz</h1>
+
+    </div>
+
+    <br>
+    <div id="divBtn">
+        <button id="btnQuizz" href="{% url 'quizz' %}">Iniciar QUIZZ !</button>
+    </div>
+    <br>
+
+
+    <div id="divEsquerda">
+
+
+        <article class="home">
+            <h1 id="video4">Entendendo Lógica de Programaçao</h1>
+
+            <iframe width="595" height="249" src="https://www.youtube.com/embed/JaTf3dhx464"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+        </article>
+
+        <article class="home">
+            <h1 id="video2">Variáveis</h1>
+
+            <iframe width="595" height="249" src="https://www.youtube.com/embed/g2T5ORrjPLs"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+        </article>
+
+
+
+
+
+    </div>
+
+
+    <div id="divDireita">
+
+        <article class="home">
+            <h1 id="video1">Programaçao: O Inicio!</h1>
+            <iframe width="595" height="249" src="https://www.youtube.com/embed/-pFafC7qNMI"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+        </article>
+
+
+
+
+        <article class="home">
+            <h1 id="video3">Operadores</h1>
+
+            <iframe width="595" height="249" src="https://www.youtube.com/embed/EGe0WwZlsq8"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+        </article>
+
+
+    </div>
+
+    <div id="openModal" class="modalDialog">
+        <div> <a href="#openModal" title="Close" class="close">X</a>
+
+            <h2>Bem vindo! </h2>
+
+            <p>Bem vindo ao Quizz, o jogo para aprender lógica de programaçao de uma maneira divertida!E o melhor: VOCE
+                NAO PRECISA SABER PROGRAMAR DE VERDADE!</p>
+            <p>Disponibilizamos alguns vídeos para que voce possa aprender um pouco antes de iniciar nosso game</p>
+        </div>
+    </div>
+
+    <script>
+        var btnQuizz = document.getElementById("btnQuizz").onclick= function (){
+            location.href= "quizz/"
+        }
+
+
+    </script>
+</body>
+
+</html>
