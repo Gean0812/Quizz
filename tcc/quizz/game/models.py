@@ -18,4 +18,5 @@ class Usuario(models.Model):
     id = models.BigAutoField(primary_key=True)
     nome = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
+    opiniao = models.TextField(default="")
     score = models.IntegerField(default=0)

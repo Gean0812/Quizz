@@ -21,11 +21,13 @@ def create(request):
     req = request
     nome = req.GET['name']
     email = req.GET['email']
+    opiniao = req.GET['opiniao']
+    score = req.GET['score']
     try:
-        usuario = Usuario(nome=nome, email=email, score=0)
+        usuario = Usuario(nome=nome, email=email, opiniao=opiniao, score=score)
         usuario.save()
 
-        return render(request, 'start.html')
+        return render(request, 'end.html')
     except ValueError as e:
         raise ValueError(e)
 

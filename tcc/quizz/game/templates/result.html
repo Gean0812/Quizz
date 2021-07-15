@@ -5,6 +5,85 @@
     <title>Resultado</title>
 </head>
 <body>
-    {{ score }}
+<h1> Sua pontuação foi de <strong>{{ score }}</strong> pontos</h1>
+    <h2>Responda o formulário abaixo</h2>
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                    <div class="card-body bg-light">
+                        <div class="container">
+                            <h3>Poderia nos dizer seu nome e email?</h3>
+                            <form id="contact-form" action="/create" role="form">
+                                <div class="controls">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <label for="form_name">Nome *</label> <input
+                                                    id="form_name" type="text" name="name" class="form-control"
+                                                    placeholder="Qual o seu nome?" required="required"
+                                                    data-error="Firstname is required."> </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <label for="form_email">Email *</label> <input
+                                                    id="form_email" type="email" name="email" class="form-control"
+                                                    placeholder="Qual seu email?" required="required"
+                                                    data-error="Valid email is required."> </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <label for="form_opiniao">Diga sua opinião sobre o game *</label> <input
+                                                    id="form_opiniao" type="text" name="opiniao" class="form-control"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" hidden>
+                                            <div class="form-group"> <label for="form_score"></label> <input
+                                                    id="form_score" type="text" name="score" class="form-control" value="{{ score }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-12"> <input id="send" type="submit"
+                                                    class="btn btn-success btn-send pt-2 btn-block " value="Enviar">
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> <!-- /.8 -->
+            </div> <!-- /.row-->
+        </div>
+    </div>
 </body>
+<script>
+        var form_name = document.getElementById("form_name").value;
+        var form_email = document.getElementById("form_email").value;
+        var form_opiniao = document.getElementById("form_opiniao").value;
+        var score = document.getElementById("score").value;
+        const data = {
+            "nome": form_name,
+            "email": form_email,
+            "opiniao": form_opiniao,
+            "score": score
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "/create",
+            data: JSON.stringify(dataObj),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Success:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+    </script>
 </html>
