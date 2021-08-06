@@ -1,11 +1,18 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Resultado</title>
+    <link rel="stylesheet" href="{% static 'result.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1> Sua pontuação foi de <strong>{{ score }}</strong> pontos</h1>
+<h1> Sua pontuação foi de {{ score }} pontos</h1>
     <h2>Responda o formulário abaixo</h2>
     <div class="container">
         <div class="row ">
@@ -13,7 +20,7 @@
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
                         <div class="container">
-                            <h3>Poderia nos dizer seu nome e email?</h3>
+                            <h3>Poderia nos dar a sua opinião?</h3>
                             <form id="contact-form" action="/create" role="form">
                                 <div class="controls">
                                     <div class="row">
@@ -25,14 +32,50 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <div class="form-group"> <label for="form_email">Email *</label> <input
-                                                    id="form_email" type="email" name="email" class="form-control"
-                                                    placeholder="Qual seu email?" required="required"
-                                                    data-error="Valid email is required."> </div>
+                                            <div class="form-group">
+                                                <label class="mr-sm-2" for="form_desing">O que acho do desing do jogo? *</label>
+                                                <select class="custom-select mr-sm-2" id="form_desing" required="required" onChange="updateDesing()">
+                                                    <option selected>Selecione uma opção.</option>
+                                                    <option value="otimo">Ótimo</option>
+                                                    <option value="bom">Bom</option>
+                                                    <option value="regular">Regular</option>
+                                                    <option value="ruim">Ruim</option>
+                                                </select>
+                                                <input type="text" name="desing" id="desing" value="" hidden>
+                                            </div>
                                         </div>
 
+
                                         <div class="col-md-6">
-                                            <div class="form-group"> <label for="form_opiniao">Diga sua opinião sobre o game *</label> <input
+                                            <div class="form-group">
+                                                <label class="mr-sm-2" for="form_perguntas">O que acho das perguntas? *</label>
+                                                <select class="custom-select mr-sm-2" id="form_perguntas" required="required" onChange="updatePerguntas()">
+                                                    <option selected>Selecione uma opção.</option>
+                                                    <option value="otimo">Ótimo</option>
+                                                    <option value="bom">Bom</option>
+                                                    <option value="regular">Regular</option>
+                                                    <option value="ruim">Ruim</option>
+                                                </select>
+                                                <input type="text" name="perguntas" id="perguntas" hidden>
+                                            </div>
+                                        </div>
+
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="mr-sm-2" for="form_videos">O que acho dos videos de ajuda antes de iniciar o game?</label>
+                                                <select class="custom-select mr-sm-2" id="form_videos" required="required" onChange="updateVideos()">
+                                                    <option selected>Selecione uma opção.</option>
+                                                    <option value="otimo">Ótimo</option>
+                                                    <option value="bom">Bom</option>
+                                                    <option value="regular">Regular</option>
+                                                    <option value="ruim">Ruim</option>
+                                                </select>
+                                                <input type="text" name="videos" id="videos" hidden>
+                                            </div>
+                                        </div>
+
+                                         <div class="col-md-6">
+                                            <div class="form-group"> <label for="form_opiniao">Tem alguma sugestão ou reclamação para o jogo? *</label> <input
                                                     id="form_opiniao" type="text" name="opiniao" class="form-control"
                                                     required="required">
                                             </div>
@@ -59,13 +102,45 @@
     </div>
 </body>
 <script>
+        function updateDesing() {
+		    var select = document.getElementById('form_desing');
+			var option = select.options[select.selectedIndex];
+
+			document.getElementById('desing').value = option.value;
+			console.log(option.value)
+		}
+
+		function updatePerguntas() {
+		    var select = document.getElementById('form_perguntas');
+			var option = select.options[select.selectedIndex];
+
+			document.getElementById('perguntas').value = option.value;
+			console.log(option.value)
+		}
+
+		function updateVideos() {
+		    var select = document.getElementById('form_videos');
+			var option = select.options[select.selectedIndex];
+
+			document.getElementById('videos').value = option.value;
+			console.log(option.value)
+		}
+
+        updateDesing();
+        updatePerguntas();
+        updateVideos();
+
         var form_name = document.getElementById("form_name").value;
-        var form_email = document.getElementById("form_email").value;
+        var form_desing = document.getElementById("desing").value;
+        var form_perguntas = document.getElementById("perguntas").value;
+        var form_videos = document.getElementById("videos").value;
         var form_opiniao = document.getElementById("form_opiniao").value;
-        var score = document.getElementById("score").value;
+        var score = document.getElementById("form_score").value;
         const data = {
             "nome": form_name,
-            "email": form_email,
+            "desing": form_desing,
+            "perguntas": form_perguntas,
+            "videos": form_videos,
             "opiniao": form_opiniao,
             "score": score
         };

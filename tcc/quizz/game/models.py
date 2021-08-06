@@ -16,7 +16,9 @@ class Pergunta(models.Model):
 
 class Usuario(models.Model):
     id = models.BigAutoField(primary_key=True)
-    nome = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
+    nome = models.CharField(max_length=255, default="")
+    desing = models.CharField(max_length=255, default="")
+    perguntas = models.CharField(max_length=255, default="")
+    videos = models.CharField(max_length=255, default="")
     opiniao = models.TextField(default="")
     score = models.IntegerField(default=0)

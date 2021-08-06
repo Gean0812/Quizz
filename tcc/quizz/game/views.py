@@ -20,11 +20,13 @@ def quizz(request):
 def create(request):
     req = request
     nome = req.GET['name']
-    email = req.GET['email']
+    desing = req.GET['desing']
+    perguntas = req.GET['perguntas']
+    videos = req.GET['videos']
     opiniao = req.GET['opiniao']
     score = req.GET['score']
     try:
-        usuario = Usuario(nome=nome, email=email, opiniao=opiniao, score=score)
+        usuario = Usuario(nome=nome, desing=desing, perguntas=perguntas, videos=videos, opiniao=opiniao, score=score)
         usuario.save()
 
         return render(request, 'end.html')
